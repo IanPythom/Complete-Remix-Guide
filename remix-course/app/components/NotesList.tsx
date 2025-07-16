@@ -9,11 +9,19 @@ type Note = {
 
 // Define component props
 interface NoteListProps {
-  notes: Note[];
+    notes: Note[];
 }
 
 function NoteList({ notes }: NoteListProps) {
-  return (
+    if (notes.length === 0) {
+        return (
+            <div className="info-message">
+            <p>No notes found! Please add a note.</p>
+            </div>
+        );
+    }
+
+    return (
       <ul id="note-list">
           {notes.map((note, index) => (
               <li key={note.id} className="note">
